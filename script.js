@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     // Configura la detección de la imagen marcadora usando AR.js
     AFRAME.registerComponent('markerhandler', {
         init: function() {
@@ -38,4 +38,34 @@ navigator.mediaDevices.getUserMedia({  video: {
         console.error('Error al acceder a la cámara: ', err);
     });
 
+});*/
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Configura la detección de la imagen marcadora usando AR.js
+    AFRAME.registerComponent('markerhandler', {
+        init: function() {
+            // Configura el marcador para ser detectado
+            var marker = document.querySelector('#marker');
+            marker.addEventListener('markerFound', function() {
+                // Muestra una alerta cuando se detecta la imagen
+                alert('¡Imagen detectada!');
+            });
+        }
+    });
+
+    // Accede a la cámara del dispositivo y muestra su salida en el elemento de video
+    navigator.mediaDevices.getUserMedia({ video: {
+        facingMode: { exact: 'environment' } // 'environment' para la cámara trasera
+    }  })
+        .then(function(stream) {
+            var video = document.getElementById('video');
+            video.srcObject = stream;
+            video.onloadedmetadata = function(e) {
+                video.play();
+            };
+        })
+        .catch(function(err) {
+            console.error('Error al acceder a la cámara: ', err);
+        });
 });
