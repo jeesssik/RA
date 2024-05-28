@@ -21,32 +21,21 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-navigator.mediaDevices.getUserMedia({ video: true })
+navigator.mediaDevices.getUserMedia({  video: {
+    facingMode: { exact: 'environment' } // 'environment' para la cámara trasera
+} })
     .then(function(stream) {
         var video = document.getElementById('video');
         video.srcObject = stream;
         video.onloadedmetadata = function(e) {
             video.play();
         };
+    })
+    .catch(function(err) {
+        console.error('Error al acceder a la cámara: ', err);
     })
     .catch(function(err) {
         console.error('Error al acceder a la cámara: ', err);
     });
 
-    navigator.mediaDevices.getUserMedia({
-        video: {
-            facingMode: { exact: 'environment' } // 'environment' para la cámara trasera
-        }
-    })
-    .then(function(stream) {
-        var video = document.getElementById('video');
-        video.srcObject = stream;
-        video.onloadedmetadata = function(e) {
-            video.play();
-        };
-    })
-    .catch(function(err) {
-        console.error('Error al acceder a la cámara: ', err);
-    });
-    
 });
