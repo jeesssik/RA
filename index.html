@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realidad Aumentada con Video</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ar.js/3.3.0/aframe-ar.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.2.0/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ar.js/3.3.0/aframe-ar.js"></script>
 </head>
 <body>
-    <div id="ar-container"></div>
+    <div id="ar-container">
+        <video id="video" autoplay playsinline></video>
+    </div>
     <img id="marker" src="tsuki.jpg" alt="Imagen marcadora">
-   <script src="script.js"></script>
+   
+    <script src="script.js"></script>
 </body>
 </html>

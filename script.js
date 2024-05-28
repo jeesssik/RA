@@ -21,4 +21,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function(stream) {
+        var video = document.getElementById('video');
+        video.srcObject = stream;
+        video.onloadedmetadata = function(e) {
+            video.play();
+        };
+    })
+    .catch(function(err) {
+        console.error('Error al acceder a la cámara: ', err);
+    });
 });
